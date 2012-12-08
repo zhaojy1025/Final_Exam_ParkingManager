@@ -13,10 +13,12 @@ public class ParkingAssistant {
 
     protected  List parkinglots ;
     private final Parkinglotchooser  parkingLotChooser;
+
     public ParkingAssistant(List parkinglots,Parkinglotchooser parkingLotChooser ) {
         this.parkinglots =parkinglots ;
         this.parkingLotChooser =parkingLotChooser ;
     }
+
 
     public Ticket  StoringCar(Car car) throws NoPositionException   {
         return parkingLotChooser.getParkinglot(parkinglots ).StoringCar(car) ;

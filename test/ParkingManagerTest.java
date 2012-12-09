@@ -15,6 +15,7 @@ public class ParkingManagerTest {
     ParkingManager  parkingmanager;
     List<Parking>  parkinglots1;
     List<Parking>  parkinglots2;
+    List<Parking>  parkinglots3;
     @Before
     public void setup() {
         parkinglots1= new ArrayList<Parking>();
@@ -28,12 +29,18 @@ public class ParkingManagerTest {
             parkinglots2 .add(parkinglot);
         }
 
+        parkinglots3= new ArrayList<Parking>();
+        for(int i=0;i<2;i++){
+            Parking parkinglot= new Parking(10-i*5);
+            parkinglots3 .add(parkinglot);
+        }
+
         List<ParkingAssistant >  parkingassistants;
         parkingassistants = new ArrayList<ParkingAssistant>() ;
         parkingassistants .add( new ParkingAssistant(parkinglots1,new LeastUsedAvailableParkingLotChooser()));
         parkingassistants .add( new ParkingAssistant(parkinglots2,new FirstAvailableParkingLotChooser()));
 
-        parkingmanager=new ParkingManager(parkinglots1, new MaxAvailableParkingLotChooser(), parkingassistants) ;
+        parkingmanager=new ParkingManager(parkinglots3, new MaxAvailableParkingLotChooser(), parkingassistants) ;
     }
 
     @Test
@@ -41,5 +48,13 @@ public class ParkingManagerTest {
         Car car=new Car();
         parkingmanager .StoringCarByParkingAssistant(car,1);
         Assert.assertEquals(49 ,parkinglots2.get(0).ShowRemainVolume());
+    }
+
+    @Test
+    public void getting_car_by_parkingassistant(){
+        Car car=new Car();
+        int parkinglotnumber=1;
+        Ticket ticket =parkingmanager .StoringCarByParkingAssistant(car,parkinglotnumber);
+        Assert.assertSame(car, parkingmanager .GetCarByParkingAssistant(ticket));
     }
 }

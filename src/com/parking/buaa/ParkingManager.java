@@ -19,7 +19,14 @@ public class ParkingManager extends ParkingAssistant  {
 
     public Ticket  StoringCarByParkingAssistant(Car car,int ParkingAssistantNumber) throws NoPositionException   {
         ParkingAssistant Parkingboy=(ParkingAssistant) parkingAssistants .get(ParkingAssistantNumber )   ;
-          return Parkingboy.StoringCar(car);
+          return Parkingboy.StoringCar(car,ParkingAssistantNumber );
     }
+
+    public Car  GetCarByParkingAssistant(Ticket ticket ) throws NoCarException {
+
+        ParkingAssistant Parkingboy= (ParkingAssistant)parkingAssistants .get(ticket .getParkinglotnumber());
+        return Parkingboy .GetCar(ticket );
+    }
+
 
 }

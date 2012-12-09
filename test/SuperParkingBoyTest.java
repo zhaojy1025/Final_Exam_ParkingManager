@@ -27,10 +27,11 @@ public class SuperParkingBoyTest {
     @Test
     public void storing_car_in_less_usingrate_parkingplace(){
         Car car=new Car();
-        parkinglots.get(0).StoringCar(car);
-        parkinglots.get(0).StoringCar(car);
-        parkinglots.get(1).StoringCar(car);
-        superparkingassistant.StoringCar(car);
-        Assert.assertEquals(18 ,parkinglots.get(1).ShowRemainVolume());
+        int parkinglotnumber =1;
+        parkinglots.get(0).StoringCar(car,parkinglotnumber);
+        parkinglots.get(0).StoringCar(car,parkinglotnumber);
+        parkinglots.get(1).StoringCar(car,parkinglotnumber);
+        superparkingassistant.StoringCar(car,parkinglotnumber);
+        Assert.assertEquals(18 ,parkinglots.get(parkinglotnumber).ShowRemainVolume());
     }
 }

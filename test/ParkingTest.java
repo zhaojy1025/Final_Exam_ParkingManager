@@ -16,6 +16,7 @@ public class ParkingTest {
     ParkingAssistant parkingassistant;
     ParkingAssistant smartparkingassistant;
     List<Parking>  parkinglots;
+    int parkinglotsnumber ;
     @Before
     public void setup() {
         parkinglots= new ArrayList<Parking>();
@@ -23,6 +24,7 @@ public class ParkingTest {
             Parking parkinglot= new Parking(20);
             parkinglots .add(parkinglot);
         }
+        parkinglotsnumber=1;
         parkingassistant = new ParkingAssistant(parkinglots,new FirstAvailableParkingLotChooser() );
         smartparkingassistant = new ParkingAssistant(parkinglots,new MaxAvailableParkingLotChooser());
     }
@@ -30,14 +32,14 @@ public class ParkingTest {
     @Test
     public void storing_car_success(){
         Car car=new Car();
-        Ticket ticket = parkingassistant.StoringCar(car);
+        Ticket ticket = parkingassistant.StoringCar(car,parkinglotsnumber);
         Assert.assertNotNull (ticket)  ;
     }
 
     @Test
     public void getting_car_success(){
         Car car=new Car();
-        Ticket  ticket =parkingassistant .StoringCar(car);
+        Ticket  ticket =parkingassistant .StoringCar(car,parkinglotsnumber);
         Assert.assertSame(car, parkingassistant .GetCar(ticket));
     }
 
@@ -51,13 +53,13 @@ public class ParkingTest {
         ParkingAssistant parkingAssistant1= new ParkingAssistant(parkinglots1,new FirstAvailableParkingLotChooser() );
         Car car=new Car();
         for(int i=0;i<3;i++)
-            parkingAssistant1 .StoringCar(car);
+            parkingAssistant1 .StoringCar(car,parkinglotsnumber);
         Assert.assertFalse(true);
     }
 
     @Test  (expected = NoCarException .class )
     public void getting_car_fail_no_car(){
-        Ticket ticket= new Ticket() ;
+        Ticket ticket= new Ticket(parkinglotsnumber) ;
         Car car=parkingassistant .GetCar(ticket );
         Assert.assertFalse(true);
     }
@@ -66,8 +68,8 @@ public class ParkingTest {
     public void getting_car_fail_not_correct_car(){
         Car car1=new Car();
         Car car2=new Car();
-        parkingassistant .StoringCar(car1);
-        Ticket ticket= parkingassistant .StoringCar(car2);
+        parkingassistant .StoringCar(car1,parkinglotsnumber);
+        Ticket ticket= parkingassistant .StoringCar(car2,parkinglotsnumber);
         parkingassistant.GetCar(ticket) ;
         parkingassistant.GetCar(ticket) ;
         Assert.assertFalse(true);
@@ -76,18 +78,18 @@ public class ParkingTest {
     @Test
     public void storing_car_in_less_volume_parkingplace(){
         Car car=new Car();
-        parkingassistant .StoringCar(car);
-        parkingassistant .StoringCar(car);
-        smartparkingassistant  .StoringCar(car);
+        parkingassistant .StoringCar(car,parkinglotsnumber);
+        parkingassistant .StoringCar(car,parkinglotsnumber);
+        smartparkingassistant  .StoringCar(car,parkinglotsnumber);
         Assert.assertEquals(19 ,parkinglots.get(1).ShowRemainVolume());
     }
 
     @Test
     public void storing_car_in_same_volume_parkingplace(){
         Car car=new Car();
-        smartparkingassistant .StoringCar(car);
-        smartparkingassistant .StoringCar(car);
-        smartparkingassistant .StoringCar(car);
+        smartparkingassistant .StoringCar(car,parkinglotsnumber);
+        smartparkingassistant .StoringCar(car,parkinglotsnumber);
+        smartparkingassistant .StoringCar(car,parkinglotsnumber);
         Assert.assertEquals(18 ,parkinglots.get(0).ShowRemainVolume());
     }
 

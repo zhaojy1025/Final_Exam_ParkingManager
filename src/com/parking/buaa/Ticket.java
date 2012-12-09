@@ -8,4 +8,19 @@ package com.parking.buaa;
  * To change this template use File | Settings | File Templates.
  */
 public class Ticket {
+
+
+    public Ticket(int parkinglotnumber) {
+        this.parkinglotnumber = parkinglotnumber;
+    }
+
+    private int parkinglotnumber;
+
+    public void setParkinglotnumber(int parkinglotnumber) {
+        this.parkinglotnumber = parkinglotnumber;
+    }
+
+    public int getParkinglotnumber() {
+        return parkinglotnumber;
+    }
 }

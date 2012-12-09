@@ -26,8 +26,8 @@ public class Parking {
         return (1-(float )parkedCarlist.size()/(float)maxParkingNum);
     }
 
-    public Ticket  StoringCar(Car car) throws NoPositionException   {
-        Ticket ticket = new Ticket();
+    public Ticket  StoringCar(Car car,int parkinglotnumber) throws NoPositionException   {
+        Ticket ticket = new Ticket(parkinglotnumber );
         parkedCarlist .put(ticket ,car);
         return ticket ;
     }

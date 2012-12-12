@@ -27,12 +27,14 @@ public class Parking {
     }
 
     public Ticket  StoringCar(Car car,int parkinglotnumber) throws NoPositionException   {
+        if(ShowRemainVolume() ==0)
+            throw new NoCarException("车库无车位！");
         Ticket ticket = new Ticket(parkinglotnumber );
         parkedCarlist .put(ticket ,car);
         return ticket ;
     }
 
-    public Car  GetCar(Ticket ticket ) throws NoCarException {
+    public Car  GetCar(Ticket ticket ) {
         if (parkedCarlist.containsKey(ticket)) {
             return parkedCarlist.remove(ticket);
         }

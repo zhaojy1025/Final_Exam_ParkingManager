@@ -17,13 +17,14 @@ public class ParkingManager extends ParkingAssistant  {
         this.parkingAssistants =ParkingAssistants;
     }
 
-    public Ticket  StoringCarByParkingAssistant(Car car,int ParkingAssistantNumber) throws NoPositionException   {
+    public Ticket  StoringCarByParkingAssistant(Car car,int ParkingAssistantNumber) throws NoParkingAssistantException    {
+        if(ParkingAssistantNumber>=parkingAssistants .size() )
+           throw new NoParkingAssistantException("没有找到相应停车仔！") ;
         ParkingAssistant Parkingboy=(ParkingAssistant) parkingAssistants .get(ParkingAssistantNumber )   ;
           return Parkingboy.StoringCar(car,ParkingAssistantNumber );
     }
 
-    public Car  GetCarByParkingAssistant(Ticket ticket ) throws NoCarException {
-
+    public Car  GetCarByParkingAssistant(Ticket ticket ) throws NoParkingAssistantException {
         ParkingAssistant Parkingboy= (ParkingAssistant)parkingAssistants .get(ticket .getParkinglotnumber());
         return Parkingboy .GetCar(ticket );
     }

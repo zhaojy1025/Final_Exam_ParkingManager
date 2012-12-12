@@ -44,17 +44,26 @@ public class ParkingManagerTest {
     }
 
     @Test
-    public void storing_car_by_parkingassistant(){
+    public void storing_car_by_parkingassistant_success(){
         Car car=new Car();
-        parkingmanager .StoringCarByParkingAssistant(car,1);
+        int parkingboynumber=1;
+        parkingmanager .StoringCarByParkingAssistant(car,parkingboynumber);
         Assert.assertEquals(49 ,parkinglots2.get(0).ShowRemainVolume());
     }
 
     @Test
-    public void getting_car_by_parkingassistant(){
+    public void getting_car_by_parkingassistant_success(){
         Car car=new Car();
         int parkinglotnumber=1;
         Ticket ticket =parkingmanager .StoringCarByParkingAssistant(car,parkinglotnumber);
         Assert.assertSame(car, parkingmanager .GetCarByParkingAssistant(ticket));
+    }
+
+    @Test    (expected = NoParkingAssistantException .class )
+    public void storing_car_by_parkingassistant_fail(){
+        Car car=new Car();
+        int parkingboynumber=2;
+        parkingmanager .StoringCarByParkingAssistant(car,parkingboynumber);
+        Assert.assertFalse(true);
     }
 }

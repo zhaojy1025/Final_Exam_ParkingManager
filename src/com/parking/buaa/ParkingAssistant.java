@@ -20,7 +20,7 @@ public class ParkingAssistant {
     }
 
 
-    public Ticket  StoringCar(Car car,int parkinglotnumber ) throws NoPositionException   {
+    public Ticket  StoringCar(Car car,int parkinglotnumber )  {
         return parkingLotChooser.getParkinglot(parkinglots ).StoringCar(car,parkinglotnumber) ;
     }
 

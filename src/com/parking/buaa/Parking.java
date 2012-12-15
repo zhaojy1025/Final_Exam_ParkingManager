@@ -12,10 +12,12 @@ import java.util.Map;
  */
 public class Parking {
     private Map <Ticket, Car>parkedCarlist=new HashMap<Ticket,Car>();
+    private int id;
     private Integer  maxParkingNum;
 
-    public Parking(int maxParkingNum) {
+    public Parking(int maxParkingNum,int id) {
         this.maxParkingNum =maxParkingNum;
+        this.id=id;
     }
 
     public int ShowRemainVolume(){
@@ -26,10 +28,10 @@ public class Parking {
         return (1-(float )parkedCarlist.size()/(float)maxParkingNum);
     }
 
-    public Ticket  StoringCar(Car car,int parkinglotnumber) throws NoPositionException   {
+    public Ticket  StoringCar(Car car) throws NoPositionException   {
         if(ShowRemainVolume() ==0)
             throw new NoCarException("车库无车位！");
-        Ticket ticket = new Ticket(parkinglotnumber );
+        Ticket ticket = new Ticket(id);
         parkedCarlist .put(ticket ,car);
         return ticket ;
     }

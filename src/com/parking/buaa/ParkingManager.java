@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class ParkingManager extends ParkingAssistant  {
     private  List parkingAssistants ;
-    public ParkingManager(List parkinglots,Parkinglotchooser parkingLotChooser ,List ParkingAssistants) {
-        super(parkinglots,parkingLotChooser);
+    public ParkingManager(List parkinglots,Parkinglotchooser parkingLotChooser ,List ParkingAssistants,int id) {
+        super(parkinglots,parkingLotChooser,id);
         this.parkingAssistants =ParkingAssistants;
     }
 
@@ -21,7 +21,7 @@ public class ParkingManager extends ParkingAssistant  {
         if(ParkingAssistantNumber>=parkingAssistants .size() )
            throw new NoParkingAssistantException("没有找到相应停车仔！") ;
         ParkingAssistant Parkingboy=(ParkingAssistant) parkingAssistants .get(ParkingAssistantNumber )   ;
-          return Parkingboy.StoringCar(car,ParkingAssistantNumber );
+          return Parkingboy.StoringCar(car );
     }
 
     public Car  GetCarByParkingAssistant(Ticket ticket ) throws NoParkingAssistantException {

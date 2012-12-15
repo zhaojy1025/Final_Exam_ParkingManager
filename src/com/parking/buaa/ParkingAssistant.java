@@ -1,4 +1,6 @@
 package com.parking.buaa;
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 import java.util.ArrayList ;
 import java.util.List;
 
@@ -12,16 +14,18 @@ import java.util.List;
 public class ParkingAssistant {
 
     protected  List parkinglots ;
+    private int id;
     private final Parkinglotchooser  parkingLotChooser;
 
-    public ParkingAssistant(List parkinglots,Parkinglotchooser parkingLotChooser ) {
+    public ParkingAssistant(List parkinglots,Parkinglotchooser parkingLotChooser,int id ) {
         this.parkinglots =parkinglots ;
         this.parkingLotChooser =parkingLotChooser ;
+        this.id=id;
     }
 
 
-    public Ticket  StoringCar(Car car,int parkinglotnumber )  {
-        return parkingLotChooser.getParkinglot(parkinglots ).StoringCar(car,parkinglotnumber) ;
+    public Ticket  StoringCar(Car car )  {
+        return parkingLotChooser.getParkinglot(parkinglots ).StoringCar(car) ;
     }
 
     public Car  GetCar(Ticket ticket ) throws NoCarException {

@@ -16,30 +16,28 @@ public class ParkingTest {
     ParkingAssistant parkingassistant;
     ParkingAssistant smartparkingassistant;
     List<Parking>  parkinglots;
-    int parkinglotsnumber ;
     @Before
     public void setup() {
         parkinglots= new ArrayList<Parking>();
         for(int i=0;i<2;i++){
-            Parking parkinglot= new Parking(20);
+            Parking parkinglot= new Parking(20,i+1);
             parkinglots .add(parkinglot);
         }
-        parkinglotsnumber=1;
-        parkingassistant = new ParkingAssistant(parkinglots,new FirstAvailableParkingLotChooser() );
-        smartparkingassistant = new ParkingAssistant(parkinglots,new MaxAvailableParkingLotChooser());
+        parkingassistant = new ParkingAssistant(parkinglots,new FirstAvailableParkingLotChooser(),1 );
+        smartparkingassistant = new ParkingAssistant(parkinglots,new MaxAvailableParkingLotChooser(),2);
     }
 
     @Test
     public void storing_car_success(){
         Car car=new Car();
-        Ticket ticket = parkingassistant.StoringCar(car,parkinglotsnumber);
+        Ticket ticket = parkingassistant.StoringCar(car);
         Assert.assertNotNull (ticket)  ;
     }
 
     @Test
     public void getting_car_success(){
         Car car=new Car();
-        Ticket  ticket =parkingassistant .StoringCar(car,parkinglotsnumber);
+        Ticket  ticket =parkingassistant .StoringCar(car);
         Assert.assertSame(car, parkingassistant .GetCar(ticket));
     }
 
@@ -47,18 +45,19 @@ public class ParkingTest {
     public void storing_car_fail_no_parking_place(){
         List<Parking>  parkinglots1= new ArrayList<Parking>();
         for(int i=0;i<2;i++){
-            Parking parkinglot= new Parking(1);
+            Parking parkinglot= new Parking(1,i+1);
             parkinglots1 .add(parkinglot);
         }
-        ParkingAssistant parkingAssistant1= new ParkingAssistant(parkinglots1,new FirstAvailableParkingLotChooser() );
+        ParkingAssistant parkingAssistant1= new ParkingAssistant(parkinglots1,new FirstAvailableParkingLotChooser(),3 );
         Car car=new Car();
         for(int i=0;i<3;i++)
-            parkingAssistant1 .StoringCar(car,parkinglotsnumber);
+            parkingAssistant1 .StoringCar(car);
         Assert.assertFalse(true);
     }
 
     @Test  (expected = NoCarException .class )
     public void getting_car_fail_no_car(){
+        int parkinglotsnumber =1;
         Ticket ticket= new Ticket(parkinglotsnumber) ;
         Car car=parkingassistant .GetCar(ticket );
         Assert.assertFalse(true);
@@ -68,8 +67,8 @@ public class ParkingTest {
     public void getting_car_fail_not_correct_car(){
         Car car1=new Car();
         Car car2=new Car();
-        parkingassistant .StoringCar(car1,parkinglotsnumber);
-        Ticket ticket= parkingassistant .StoringCar(car2,parkinglotsnumber);
+        parkingassistant .StoringCar(car1);
+        Ticket ticket= parkingassistant .StoringCar(car2);
         parkingassistant.GetCar(ticket) ;
         parkingassistant.GetCar(ticket) ;
         Assert.assertFalse(true);
@@ -78,18 +77,18 @@ public class ParkingTest {
     @Test
     public void storing_car_in_less_volume_parkingplace(){
         Car car=new Car();
-        parkingassistant .StoringCar(car,parkinglotsnumber);
-        parkingassistant .StoringCar(car,parkinglotsnumber);
-        smartparkingassistant  .StoringCar(car,parkinglotsnumber);
+        parkingassistant .StoringCar(car);
+        parkingassistant .StoringCar(car);
+        smartparkingassistant  .StoringCar(car);
         Assert.assertEquals(19 ,parkinglots.get(1).ShowRemainVolume());
     }
 
     @Test
     public void storing_car_in_same_volume_parkingplace(){
         Car car=new Car();
-        smartparkingassistant .StoringCar(car,parkinglotsnumber);
-        smartparkingassistant .StoringCar(car,parkinglotsnumber);
-        smartparkingassistant .StoringCar(car,parkinglotsnumber);
+        smartparkingassistant .StoringCar(car);
+        smartparkingassistant .StoringCar(car);
+        smartparkingassistant .StoringCar(car);
         Assert.assertEquals(18 ,parkinglots.get(0).ShowRemainVolume());
     }
 

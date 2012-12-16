@@ -11,7 +11,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ParkingManager extends ParkingAssistant  {
-    private  List parkingAssistants ;
+    protected   List parkingAssistants ;
     public ParkingManager(List parkinglots,Parkinglotchooser parkingLotChooser ,List ParkingAssistants,int id) {
         super(parkinglots,parkingLotChooser,id);
         this.parkingAssistants =ParkingAssistants;
@@ -27,6 +27,10 @@ public class ParkingManager extends ParkingAssistant  {
     public Car  GetCarByParkingAssistant(Ticket ticket ) throws NoParkingAssistantException {
         ParkingAssistant Parkingboy= (ParkingAssistant)parkingAssistants .get(ticket .getParkinglotnumber());
         return Parkingboy .GetCar(ticket );
+    }
+
+    public void PrintParkingAssistantsInfo(){
+
     }
 
 

@@ -42,7 +42,7 @@ public class PrintInfoTest {
         parkingassistants .add( new ParkingAssistant(parkinglots2,new FirstAvailableParkingLotChooser(),2));
 
         parkingmanager=new ParkingManager(parkinglots3, new MaxAvailableParkingLotChooser(), parkingassistants,1) ;
-        parkingdirector=new ParkingDirector(parkinglots3,new MaxAvailableParkingLotChooser(), parkingassistants,parkingmanager ,1);
+        parkingdirector=new ParkingDirector(parkinglots3,new MaxAvailableParkingLotChooser(),parkingmanager ,1);
 
     }
 
@@ -61,6 +61,15 @@ public class PrintInfoTest {
         System.out.println("————————————————————————————————————");
         System.out.println("\t\t\t\t\t\t打印停车仔消息");
         parkingmanager.PrintParkingAssistantsInfo() ;
+        System.out.println("————————————————————————————————————");
+    }
+
+    @Test
+    public void Print_ParkingManager_info(){
+
+        System.out.println("————————————————————————————————————");
+        System.out.println("\t\t\t\t\t\t打印停车经理消息");
+        parkingdirector .PrintParkingManagerInfo() ;
         System.out.println("————————————————————————————————————");
     }
 }

@@ -28,23 +28,33 @@ public class ParkingAssistant {
     }
 
     public void PrintParkinglotsInfo(){
-        int totalavailable=0;
-        int totalinused=0;
         for(int i=0;i<parkinglots.size() ;i++){
             Parking parkingplace= (Parking) parkinglots.get(i);
             System.out.printf("\t停车场编号：");
             System.out.println(parkingplace.getId());
             System.out.printf("\t\t车位数：");
             System.out.println(parkingplace.getParkedCarlist() .size() );
-            totalinused+=parkingplace.getParkedCarlist() .size();
             System.out.printf("\t\t空位数：");
             System.out.println(parkingplace.ShowRemainVolume() );
+        }
+    }
+
+    public int GetTotoalnumber_available(){
+        int totalavailable=0;
+        for(int i=0;i<parkinglots.size() ;i++){
+            Parking parkingplace= (Parking) parkinglots.get(i);
             totalavailable+=parkingplace.ShowRemainVolume();
         }
-        System.out.printf("\t总车位数：");
-        System.out.println( totalinused);
-        System.out.printf("\t总空位数：");
-        System.out.println(totalavailable );
+        return totalavailable ;
+    }
+
+    public int GetTotoalnumber_unavailable(){
+        int totalunavailable=0;
+        for(int i=0;i<parkinglots.size() ;i++){
+            Parking parkingplace= (Parking) parkinglots.get(i);
+            totalunavailable+=parkingplace.getParkedCarlist() .size();
+        }
+        return totalunavailable ;
     }
 
     public Ticket  StoringCar(Car car )  {

@@ -12,6 +12,15 @@ import java.util.Map;
  */
 public class Parking {
     private Map <Ticket, Car>parkedCarlist=new HashMap<Ticket,Car>();
+
+    public Map<Ticket, Car> getParkedCarlist() {
+        return parkedCarlist;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     private int id;
     private Integer  maxParkingNum;
 

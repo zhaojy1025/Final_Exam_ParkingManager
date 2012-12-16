@@ -17,7 +17,16 @@ public class ParkingDirector  extends ParkingManager {
     }
 
     public void PrintParkinglotsInfo(){
-       System .out .printf("test");
+        for(int i=0;i<parkinglots.size() ;i++){
+            Parking parkingplace= (Parking) parkinglots.get(i);
+            System.out.printf("停车场编号：");
+            System.out.println(parkingplace .getId());
+            System.out.printf("\t车位数：");
+            System.out.println(parkingplace.getParkedCarlist() .size() );
+            System.out.printf("\t空位数：");
+            System.out.println(parkingplace.ShowRemainVolume() );
+
+        }
     }
 
 }

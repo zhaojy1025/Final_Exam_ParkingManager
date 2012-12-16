@@ -17,6 +17,10 @@ public class ParkingAssistant {
     private int id;
     private final Parkinglotchooser  parkingLotChooser;
 
+    public int getId() {
+        return id;
+    }
+
     public ParkingAssistant(List parkinglots,Parkinglotchooser parkingLotChooser,int id ) {
         this.parkinglots =parkinglots ;
         this.parkingLotChooser =parkingLotChooser ;
@@ -28,18 +32,18 @@ public class ParkingAssistant {
         int totalinused=0;
         for(int i=0;i<parkinglots.size() ;i++){
             Parking parkingplace= (Parking) parkinglots.get(i);
-            System.out.printf("停车场编号：");
-            System.out.println(parkingplace .getId());
-            System.out.printf("\t车位数：");
+            System.out.printf("\t停车场编号：");
+            System.out.println(parkingplace.getId());
+            System.out.printf("\t\t车位数：");
             System.out.println(parkingplace.getParkedCarlist() .size() );
             totalinused+=parkingplace.getParkedCarlist() .size();
-            System.out.printf("\t空位数：");
+            System.out.printf("\t\t空位数：");
             System.out.println(parkingplace.ShowRemainVolume() );
             totalavailable+=parkingplace.ShowRemainVolume();
         }
-        System.out.printf("总车位数：");
+        System.out.printf("\t总车位数：");
         System.out.println( totalinused);
-        System.out.printf("总空位数：");
+        System.out.printf("\t总空位数：");
         System.out.println(totalavailable );
     }
 

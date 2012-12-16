@@ -48,6 +48,19 @@ public class PrintInfoTest {
 
     @Test
     public void Print_Parkinglots_info(){
+
+        System.out.println("————————————————————————————————————");
+        System.out.println("\t\t\t\t\t\t打印停车场消息");
         new ParkingAssistant(parkinglots1,new LeastUsedAvailableParkingLotChooser(),1).PrintParkinglotsInfo() ;
+        System.out.println("————————————————————————————————————");
+    }
+
+    @Test
+    public void Print_ParkingAssistants_info(){
+
+        System.out.println("————————————————————————————————————");
+        System.out.println("\t\t\t\t\t\t打印停车仔消息");
+        parkingmanager.PrintParkingAssistantsInfo() ;
+        System.out.println("————————————————————————————————————");
     }
 }

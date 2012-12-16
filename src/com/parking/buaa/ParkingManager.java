@@ -30,6 +30,12 @@ public class ParkingManager extends ParkingAssistant  {
     }
 
     public void PrintParkingAssistantsInfo(){
+        for(int i=0;i<parkingAssistants.size() ;i++){
+            ParkingAssistant  parkingassistants= (ParkingAssistant )parkingAssistants.get(i);
+            System.out.printf("停车仔编号：");
+            System.out.println(parkingassistants .getId());
+            parkingassistants.PrintParkinglotsInfo() ;
+        }
 
     }
 

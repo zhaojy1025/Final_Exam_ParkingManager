@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="zjy-PC" name="SuperParkingBoyTest" tests="1" time="0.002" timestamp="2012-12-20T03:15:24">
+  <properties />
+  <testcase classname="SuperParkingBoyTest" name="storing_car_in_less_usingrate_parkingplace" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

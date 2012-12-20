@@ -1,7 +1,7 @@
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test  ;
-import com.parking.buaa.*;
+
 import java.util.ArrayList ;
 import java.util.List;
 

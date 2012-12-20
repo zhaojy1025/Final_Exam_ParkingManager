@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" hostname="zjy-PC" name="PrintInfoTest" tests="3" time="0.01" timestamp="2012-12-20T03:15:24">
+  <properties />
+  <testcase classname="PrintInfoTest" name="Print_ParkingManager_info" time="0.004" />
+  <testcase classname="PrintInfoTest" name="Print_Parkinglots_info" time="0.0" />
+  <testcase classname="PrintInfoTest" name="Print_ParkingAssistants_info" time="0.002" />
+  <system-out><![CDATA[————————————————————————————————————
+						打印停车经理消息
+经理编号：1
+	停车场编号：1
+		车位数：0
+		空位数：10
+	停车场编号：2
+		车位数：0
+		空位数：5
+停车仔编号：1
+	停车场编号：1
+		车位数：0
+		空位数：30
+	停车场编号：2
+		车位数：0
+		空位数：20
+	总车位数：0
+	总空位数：50
+停车仔编号：2
+	停车场编号：1
+		车位数：0
+		空位数：50
+	停车场编号：2
+		车位数：0
+		空位数：40
+	总车位数：0
+	总空位数：90
+总车位数：0
+总空位数：155
+————————————————————————————————————
+————————————————————————————————————
+						打印停车场消息
+	停车场编号：1
+		车位数：0
+		空位数：30
+	停车场编号：2
+		车位数：0
+		空位数：20
+————————————————————————————————————
+————————————————————————————————————
+						打印停车仔消息
+停车仔编号：1
+	停车场编号：1
+		车位数：0
+		空位数：30
+	停车场编号：2
+		车位数：0
+		空位数：20
+	总车位数：0
+	总空位数：50
+停车仔编号：2
+	停车场编号：1
+		车位数：0
+		空位数：50
+	停车场编号：2
+		车位数：0
+		空位数：40
+	总车位数：0
+	总空位数：90
+————————————————————————————————————
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
